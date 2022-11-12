@@ -57,14 +57,18 @@ class DetalisScreen extends StatelessWidget {
                     ),
                   )),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (ctx) => CastScreen(
-                            movie: movie,
-                          )));
-                },
-                child: Text("data"))
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.amber),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => CastScreen(
+                              movie: movie,
+                            )));
+                  },
+                  child: Text("Cast Detalis")),
+            )
           ],
         ),
       ),

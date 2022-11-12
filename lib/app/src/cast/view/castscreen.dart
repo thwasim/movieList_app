@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/app/service/detalis/cast.dart';
 import 'package:movies_app/app/src/cast/model/model.dart';
+import 'package:movies_app/app/src/cast/view/charater.dart';
 import 'package:movies_app/app/src/home/model/homemodel.dart';
 
 class CastScreen extends StatelessWidget {
@@ -9,6 +10,7 @@ class CastScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -23,46 +25,58 @@ class CastScreen extends StatelessWidget {
                       return ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         padding: EdgeInsets.zero,
-                        itemCount: 10,
+                        itemCount: snapshot.data!.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.4,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.2,
-                                  child: Image.network(
-                                    "",
+                          final item = snapshot.data![index];
+                          return InkWell(
+                            onTap: (() {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (ctx) => CharaterScreen(
+                                    movie: snapshot.data![index],
                                   ),
                                 ),
-                              ),
-                              Card(
-                                shadowColor: Colors.black,
-                                elevation: 10,
-                                color: Colors.white,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30)),
+                              );
+                            }),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
+                                    child: Image.network(
+                                      item.character.image!.original,
+                                    ),
+                                  ),
                                 ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 20),
-                                      child: Text(
-                                        'Name',
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold),
+                                Card(
+                                  shadowColor: Colors.black,
+                                  elevation: 10,
+                                  color: Colors.white,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          item.character.name,maxLines: 2,overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
-                                    )
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           );
                         },
                       );
@@ -72,7 +86,7 @@ class CastScreen extends StatelessWidget {
                         child: Text('Something went wrong'),
                       );
                     } else {
-                     return const Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
