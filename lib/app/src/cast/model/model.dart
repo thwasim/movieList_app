@@ -1,7 +1,6 @@
 //
 //     final movieCast = movieCastFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<MovieCast> movieCastFromJson(String str) =>

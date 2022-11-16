@@ -41,7 +41,7 @@ class DetalisScreens extends StatelessWidget {
                 top: MediaQuery.of(context).size.height * 0.01,
                 left: MediaQuery.of(context).size.width * 0.02,
                 child: GestureDetector(
-                  onTap:(() {
+                  onTap: (() {
                     Navigator.of(context).pop();
                   }),
                   child: const CircleAvatar(

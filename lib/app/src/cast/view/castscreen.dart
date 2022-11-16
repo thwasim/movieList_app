@@ -28,15 +28,17 @@ class CastScreen extends StatelessWidget {
                     return GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              mainAxisExtent: 220, crossAxisCount: 2),
+                        mainAxisExtent: 220,
+                        crossAxisCount: 2,
+                      ),
                       itemBuilder: (BuildContext context, int index) {
                         final item = snapshot.data![index];
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (ctx) => CharaterScreen(
-                                  movie: snapshot.data![index],
+                                builder: (ctx) => CharaterAnimation(
+                                  movies: snapshot.data![index],
                                 ),
                               ),
                             );
