@@ -36,38 +36,56 @@ class CastScreen extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (ctx) => CharaterAnimation(
-                                  movies: snapshot.data![index],
-                                ),
-                              ),
+                              PageRouteBuilder(
+                                  pageBuilder: (context, animation, _) {
+                                    return CharaterScreen(
+                                      movie: snapshot.data![index],
+                                    );
+                                  },
+                                  opaque: false),
                             );
                           },
                           child: Column(
                             children: [
-                              Container(
-                                alignment: Alignment.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.amber,
-                                    radius: 70,
-                                    backgroundImage: NetworkImage(
-                                      item.character.image!.original,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 5, left: 8),
-                                child: Text(
-                                  item.character.name,
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              item.character.image != null
+                                  ? Container(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.2,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.4,
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromARGB(255, 255, 255, 255),
+                                            borderRadius:
+                                                BorderRadius.circular(80),
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                item.character.image!.original,
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : const CircleAvatar(
+                                      radius: 70,
+                                      backgroundColor:
+                                          Color.fromARGB(255, 117, 115, 108)),
+                              Text(
+                                item.character.name,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],

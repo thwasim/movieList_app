@@ -13,13 +13,13 @@ class CharaterAnimation extends StatelessWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           return TweenAnimationBuilder(
-            tween: Tween(begin: 0.0, end: 1.0),
+            tween: Tween(begin: 10.0, end: 16.0),
             duration: const Duration(milliseconds: 1500),
             builder: (context, value, child) {
               return ShaderMask(
                 shaderCallback: (rectes) {
                   return const RadialGradient(
-                    radius: 5,
+                    radius: 56,
                     colors: [
                       Colors.white,
                       Colors.white,
