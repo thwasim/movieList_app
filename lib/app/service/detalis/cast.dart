@@ -12,8 +12,6 @@ class ApiServiceMoviCast {
       );
       if (response.statusCode! >= 200 || response.statusCode! <= 299) {
         log("success man we got it");
-
-        // log(response.data.toString());
         return movieCastFromJson(jsonEncode(response.data));
       } else {
         log('error');
