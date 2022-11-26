@@ -10,7 +10,7 @@ class CustomConatiner extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(),
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white
+        color: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(10.0),

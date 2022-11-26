@@ -21,7 +21,6 @@ class ApiserviceMovieList {
       if (e.response?.data != null) {
         log('errrrrro');
       }
-
       log('hey ');
       if (e.error.toString().contains('SocketException')) {
         log("Connection refused !");

@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:movies_app/app/src/cast/model/model.dart';
 
 class ApiServiceMoviCast {
-  
   Future<List<MovieCast>?> getMovieCast(int id) async {
     try {
       final response = await Dio().get(
@@ -17,13 +16,12 @@ class ApiServiceMoviCast {
         log('error');
       }
     } on DioError catch (e) {
-      if(e.response == null){
-        log('network error') ;
+      if (e.response == null) {
+        log('network error');
       }
-      if(e.response?.data != null){
+      if (e.response?.data != null) {
         log('errrrrro');
       }
-      
       log('hey ');
       if (e.error.toString().contains('SocketException')) {
         log("Connection refused !");
